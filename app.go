@@ -7,7 +7,12 @@ type App struct {
 	middlewares []Middleware
 }
 
-func New() *App { return &App{} }
+func New() *App {
+	app := &App{}
+	app.Use(Logger())
+	app.Use(Recoverer())
+	return app
+}
 
 func (a *App) Use(mw Middleware)          { a.middlewares = append(a.middlewares, mw) }
 func (a *App) Get(p string, h Handler)    { a.router.add("GET", p, h) }
