@@ -1,0 +1,2 @@
+# hamoc
+go thingyabob
